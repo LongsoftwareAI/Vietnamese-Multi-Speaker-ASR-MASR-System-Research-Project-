@@ -10,10 +10,11 @@ Dự án này đề xuất và phát triển một hệ thống Nhận dạng gi
 * **ASR tiếng Việt tối ưu:** Tích hợp mô hình **PhoWhisper-Large** mang lại kết quả nhận dạng văn bản tiếng Việt vượt trội và mạch lạc.
 
 ## 🛠️ Kiến trúc Hệ thống (System Architecture)
+![System Pipeline Diagram](./A_clean_professional_2k_202602240949.jpeg)
 Hệ thống xử lý âm thanh đầu vào qua 4 module chính:
 1. **Pre-processing (VAD & Cut/Merge):** Áp dụng Energy-based VAD (dựa trên năng lượng) để loại bỏ khoảng lặng. [cite_start]Áp dụng cơ chế chia nhỏ gối đầu (overlapping cut) hoặc gộp audio để tạo đầu vào ổn định (tối đa 30s).
 2. **Diarization:** Trích xuất "vân tay giọng nói" (vector 512 chiều) thông qua mạng WavLM và xác định ranh giới người nói bằng Spectral Clustering.
-3. **Verification:** Đánh giá mức độ đồng thuận. [cite_start]Khi MASR không đạt ngưỡng tin cậy, hệ thống tự động điều chỉnh dựa trên mô hình cơ sở WavLM.
+3. **Verification:** Đánh giá mức độ đồng thuận.Khi MASR không đạt ngưỡng tin cậy, hệ thống tự động điều chỉnh dựa trên mô hình cơ sở WavLM.
 4. **ASR & Output:** Giải mã nội dung bằng PhoWhisper-Large và xuất kết quả trực quan dưới định dạng TXT, SRT hoặc JSON kèm mốc thời gian.
 
 ## 🗂️ Cấu trúc Repo (Repository Structure)
